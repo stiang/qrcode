@@ -25,3 +25,30 @@ Demo
 8. Handle PINs/logins for the second part of the "two factor" according to your application design.
 
 NOTE: This documentation is rather basic as this was open-sourced by specific request!
+
+How to use QR Code Encoder with Elixir
+======================================
+
+Add :qrcode to `mix.deps`
+::
+
+    defp deps do
+      [{:qrcode, git: “git@gitlab.com:Pacodastre/qrcode.git”}]
+    end
+
+Then run:
+::
+
+    mix deps.get
+    mix deps.compile
+
+Then, whenever you have this compiled, you should have access to the functions available in elixir.
+
+    iex(1)> qrcode = :qrcode.encode(“bla”)
+    {:qrcode, 1, :M, 29,
+     <<0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 254, 211, 248, 4, 16, 208, 64, 46, 152, ...>>}
+     iex(2)> png = :qrcode_demo.simple_png_encode(qrcode)
+     <<137, 80, 78, 71, 13, 10, 26, 10, 0, 0, 0, 13, 73, 72, 68, 82, 0, 0, 0, 232, 0, 0, 0, ...>>
+     iex(3)> :file.write_file(“example.png”, png)
+     :ok
+
