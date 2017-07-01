@@ -5,7 +5,7 @@ defmodule QRCode.Mixfile do
     [app: :qrcode,
      version: "0.0.1",
      language: :erlang,
-     deps: deps]
+     deps: deps()]
   end
 
   def application() do
